@@ -1,12 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>brpradeepprabhu</title>
+    <link href="assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/lib/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
+    <script src="assets/lib/createjs/createjs.js"></script>
+    <script src="assets/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="assets/lib/anime/anime.min.js"></script>
+    <script src="assets/script/home.js"></script>
+    <script src="assets/script/main.js">
+    </script>
 </head>
-<body>
-        Github Repositories documentation and samples
+
+<body onload="init()">
+    <div class="wireline">
+    </div>
+    <div id="animation_container">
+        <canvas id="canvas" width="1366" height="768" style="position: absolute; display: block; background-color:rgba(255, 255, 255, 1.00);"></canvas>
+        <div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:1366px; height:768px; position: absolute; left: 0px; top: 0px; display: block;">
+        </div>
+    </div>
+    <div class="socialIcons">
+        <span<i class="fa fa-facebook-square fa-3x" aria-hidden="true"></i>
+            </span>
+            <span<i class="fa fa-linkedin-square" aria-hidden="true"></i>
+                </span>
+                <span<i class="fa fa-github-square" aria-hidden="true"></i>
+                    </span>
+    </div>
 </body>
+
 </html>

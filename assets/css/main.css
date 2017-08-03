@@ -1,0 +1,38 @@
+.socialIcons {
+    position: fixed;
+    right: 0;
+    top: 0;
+}
+
+#animation_container {
+    background-color: rgba(255, 255, 255, 1.00);
+    width: 100%;
+    height: 100%
+}
+
+body {
+    background: linear-gradient(#fdffff 12%, #e6f8fd 30%, #c8eefb 54%, #bee4f8 75%, #b1d8f5 100%)
+}
+
+canvas {
+    background: linear-gradient(#fdffff 12%, #e6f8fd 30%, #c8eefb 54%, #bee4f8 75%, #b1d8f5 100%)
+}
+
+.wireline {
+    position: absolute;
+    top: 61.7%;
+    width: 100%;
+    right: 0;
+    height: 5px;
+    background: black;
+    display: block;
+}
+
+@media (max-width:1366px) {
+    body {
+        background: none;
+    }
+    .wireline {
+        display: none;
+    }
+}
