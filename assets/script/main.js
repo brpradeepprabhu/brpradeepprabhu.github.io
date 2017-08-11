@@ -101,17 +101,17 @@ function handleComplete(evt) {
                     sRatio = Math.max(xRatio, yRatio);
                 }
             }
-            canvas.width = w * pRatio * sRatio;
-            canvas.height = h * pRatio * sRatio;
-            canvas.style.width = dom_overlay_container.style.width = anim_container.style.width = w * sRatio + 'px';
-            canvas.style.height = anim_container.style.height = dom_overlay_container.style.height = h * sRatio + 'px';
-            stage.scaleX = pRatio * sRatio;
-            stage.scaleY = pRatio * sRatio;
+            canvas.width = w * pRatio * xRatio;
+            canvas.height = h * pRatio * yRatio;
+            canvas.style.width = dom_overlay_container.style.width = anim_container.style.width = w * xRatio + 'px';
+            canvas.style.height = anim_container.style.height = dom_overlay_container.style.height = h * yRatio + 'px';
+            stage.scaleX = xRatio;
+            stage.scaleY = yRatio;
             lastW = iw;
             lastH = ih;
             lastS = sRatio;
         }
     }
-    makeResponsive(true, 'both', true, 1);
+    makeResponsive(true, 'both', true, 2);
     fnStartAnimation();
 }
