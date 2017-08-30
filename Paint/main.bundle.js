@@ -34,7 +34,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-paint width=\"500\" height=\"500\" image=\"../assets/images/cloud3.png\"></app-paint>\n"
+module.exports = "<app-paint width=\"500\" height=\"500\" image=\"assets/images/cloud3.png\"></app-paint>\n"
 
 /***/ }),
 
