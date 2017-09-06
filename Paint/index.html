@@ -1,14 +1,30 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Paint</title>
-  <base href="https://brpradeepprabhu.github.io/Paint/">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Paint</title>
+    <script src="./assets/lib/createjs/createjs.min.js"></script>
+    <script src="./src/main.js"></script>
+    <script src="./src/shapes/freeStyle.js"></script>
+    <script src="./src/shapes/circle.js"></script>
+    <script src="./src/shapes/ellipse.js"></script>
+    <script src="./src/shapes/polygon.js"></script>
+    <script src="./src/shapes/square.js"></script>
+    <script src="./src/shapes/text.js"></script>
 </head>
-<body>
-  <app-root></app-root>
-<script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="scripts.bundle.js"></script><script type="text/javascript" src="styles.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script></body>
+
+<body onload="init()">
+    <canvas id="canvas" width="1000" style="background-color: red" height="600"></canvas>
+    <button onclick="createShape('freestyle')">paint</button>
+    <button onclick="createShape('text')">text</button>
+    <button onclick="createShape('square')">square</button>
+    <button onclick="createShape('circle')">circle</button>
+    <button onclick="createShape('ellipsis')">ellipsis</button>
+    <button onclick="clearAll()">clearAll</button>
+    <button onclick="undo()">undo</button>
+</body>
+
 </html>
