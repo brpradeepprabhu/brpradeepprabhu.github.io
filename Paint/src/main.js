@@ -32,6 +32,9 @@ function stageMouseDown(event) {
     if (currentShapeBtn === 'ellipsis') {
         currentShape = new paint.Ellipsis(stage, contentContainer);
     }
+    if (currentShapeBtn === 'line') {
+        currentShape = new paint.Line(stage, contentContainer);
+    }
 }
 
 function stageMouseMove(event) {
