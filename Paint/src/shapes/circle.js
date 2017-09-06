@@ -8,8 +8,7 @@ var paint = paint || {};
         this.circle.beginStroke(stokeColor);
         this.circle.beginFill(fillColor);
         this.circle.drawCircle(0, 0, 30);
-
-        console.log(stage.mouseX, stage.mouseY)
+        this.startingPoint = new createjs.Point(stage.mouseX, stage.mouseY);
         this.drawingCanvas = new createjs.Shape(this.circle);
         container.addChild(this.drawingCanvas);
         this.drawingCanvas.x = stage.mouseX;
@@ -25,6 +24,9 @@ var paint = paint || {};
     }
     p.mouseMove = function () {
 
+        var diff = Math.abs(stage.mouseX - this.startingPoint.x);
+        this.circle.clear().setStrokeStyle(stroke).beginStroke(stokeColor).beginFill(fillColor).drawCircle(0, 0, diff);;
+        this.stage.update();
     }
     paint.Circle = Circle
 }());
