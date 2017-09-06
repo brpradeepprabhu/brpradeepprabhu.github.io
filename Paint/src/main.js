@@ -35,6 +35,9 @@ function stageMouseDown(event) {
     if (currentShapeBtn === 'line') {
         currentShape = new paint.Line(stage, contentContainer);
     }
+    if (currentShapeBtn === 'rect') {
+        currentShape = new paint.Rect(stage, contentContainer);
+    }
 }
 
 function stageMouseMove(event) {
