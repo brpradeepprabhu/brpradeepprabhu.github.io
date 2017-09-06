@@ -4,12 +4,9 @@ var paint = paint || {};
         this.stage = stage;
 
         this.square = new createjs.Graphics();
-        this.square.setStrokeStyle(stroke);
-        this.square.beginStroke(stokeColor);
-        this.square.beginFill(fillColor);
-        this.square.drawRect (0, 0, 100,100);
-   
-        console.log(stage.mouseX, stage.mouseY)
+        this.square.setStrokeStyle(stroke).beginStroke(stokeColor).beginFill(fillColor);
+        this.square.drawRect(0, 0, 10, 10);
+        this.startingPoint = new createjs.Point(stage.mouseX, stage.mouseY);
         this.drawingCanvas = new createjs.Shape(this.square);
         container.addChild(this.drawingCanvas);
         this.drawingCanvas.x = stage.mouseX;
@@ -24,7 +21,9 @@ var paint = paint || {};
 
     }
     p.mouseMove = function () {
-
+        var diff = Math.abs(stage.mouseX - this.startingPoint.x);
+        this.square.clear().setStrokeStyle(stroke).beginStroke(stokeColor).beginFill(fillColor).drawRect(0, 0, diff, diff);
+        this.stage.update();
     }
     paint.Square = Square
 }());
