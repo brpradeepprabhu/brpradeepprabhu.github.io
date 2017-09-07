@@ -6,13 +6,17 @@ var canvas, stage, currentShapeBtn = "freestyle",
 
 function init() {
     canvas = document.getElementById('canvas');
+    var parentNode = canvas.parentNode;
+    console.log(parentNode);
     stage = new createjs.Stage(canvas);
     contentContainer = new createjs.Container();
     console.log(contentContainer)
     stage.addChild(contentContainer);
     stage.addEventListener('stagemousedown', stageMouseDown);
     stage.addEventListener("stagemouseup", stageMouseUp);
-    console.log("aaa", canvas, stage)
+    var parentStyle = window.getComputedStyle(parentNode)
+    canvas.height = window.innerHeight * 0.8;
+    canvas.width = parseInt(parentStyle.width);
 }
 
 function stageMouseDown(event) {
@@ -68,4 +72,8 @@ function clearAll() {
 function createShape(shape) {
     console.log("shape", shape)
     currentShapeBtn = shape;
+}
+
+function updateStroke(e) {
+    stroke = e.value == 0 ? undefined : e.value;
 }

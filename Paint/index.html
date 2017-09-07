@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Paint</title>
+    <link rel="stylesheet" href="./assets/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <script src="./assets/lib/jquery/jquery.min.js"></script>
+    <script src="./assets/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="./assets/lib/createjs/createjs.min.js"></script>
     <script src="./src/main.js"></script>
     <script src="./src/shapes/freeStyle.js"></script>
@@ -16,19 +20,44 @@
     <script src="./src/shapes/text.js"></script>
     <script src="./src/shapes/line.js"></script>
     <script src="./src/shapes/rect.js"></script>
+
 </head>
 
 <body onload="init()">
-    <canvas id="canvas" width="1000" style="background-color: red" height="600"></canvas>
-    <button onclick="createShape('freestyle')">paint</button>
-    <button onclick="createShape('text')">text</button>
-    <button onclick="createShape('square')">square</button>
-    <button onclick="createShape('circle')">circle</button>
-    <button onclick="createShape('ellipsis')">ellipsis</button>
-    <button onclick="createShape('line')">line</button>
-    <button onclick="createShape('rect')">Rect</button>
-    <button onclick="clearAll()">clearAll</button>
-    <button onclick="undo()">undo</button>
+    <div class="container-fluid">
+        <div class="col-xs-1 sidebar">
+            <button class="col-xs-12 btn" onclick="createShape('select')">select</button>
+            <button class="col-xs-12 btn btn-default" onclick="createShape('freestyle')">paint</button>
+            <button class="col-xs-12 btn" onclick="createShape('text')">text</button>
+            <button class="col-xs-12 btn" onclick="createShape('square')">square</button>
+            <button class="col-xs-12 btn" onclick="createShape('circle')">circle</button>
+            <button class="col-xs-12 btn" onclick="createShape('ellipsis')">ellipsis</button>
+            <button class="col-xs-12 btn" onclick="createShape('line')">line</button>
+            <button class="col-xs-12 btn" onclick="createShape('rect')">Rect</button>
+            <button class="col-xs-12 btn" onclick="clearAll()">clearAll</button>
+            <button class="col-xs-12 btn" onclick="undo()">undo</button>
+            <select class="form-control" onchange="updateStroke(this)" value="10">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10" selected="selected">10</option>
+            </select>
+        </div>
+        <div class="col-xs-9">
+            <canvas id="canvas" width="1000" height="600"></canvas>
+        </div>
+        <div class="col-xs-2">
+        </div>
+    </div>
+
+    <script src="./src/resize.js"></script>
 </body>
 
 </html>
