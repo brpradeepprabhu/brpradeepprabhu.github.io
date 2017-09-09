@@ -13,12 +13,15 @@ var paint = paint || {};
     }
     var p = Line.prototype;
     p.shapeMouseDown = function (e) {
-        console.log(e);
         this.offset = {
             x: this.drawingCanvas.x - e.stageX,
             y: this.drawingCanvas.y - e.stageY
         };
         this.drawingCanvas.addEventListener('pressmove', this.shapeMouseMove.bind(this));
+        if (currentShapeBtn === 'select') {
+            selectedShape = this.drawingCanvas;
+            $('#deleteBtn').show();
+        }
     }
     p.shapeMouseMove = function (e) {
         if (currentShapeBtn === 'select') {

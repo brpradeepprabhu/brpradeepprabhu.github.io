@@ -13,24 +13,30 @@ var paint = paint || {};
         container.addChild(this.drawingCanvas);
         this.drawingCanvas.x = stage.mouseX;
         this.drawingCanvas.y = stage.mouseY;
+        this.drawingCanvas.instance = this;
         this.stage.update();
         this.drawingCanvas.addEventListener('mousedown', this.shapeMouseDown.bind(this));
         this.drawingCanvas.addEventListener('mouseup', this.shapeMouseUp);
     }
     var p = Circle.prototype;
     p.shapeMouseDown = function (e) {
-        console.log(e);
         this.offset = {
             x: this.drawingCanvas.x - e.stageX,
             y: this.drawingCanvas.y - e.stageY
         };
         this.drawingCanvas.addEventListener('pressmove', this.shapeMouseMove.bind(this));
+        if (currentShapeBtn === 'select') {
+            selectedShape = this.drawingCanvas;
+            updateProperties();
+        }
     }
     p.shapeMouseMove = function (e) {
         if (currentShapeBtn === 'select') {
             this.drawingCanvas.x = this.stage.mouseX + this.offset.x;
             this.drawingCanvas.y = this.stage.mouseY + this.offset.y;
+            updateProperties();
             this.stage.update();
+
         }
     }
     p.shapeMouseUp = function (e) {
@@ -48,6 +54,18 @@ var paint = paint || {};
             this.circle.clear().setStrokeStyle(stroke).beginStroke(stokeColor).beginFill(fillColor).drawCircle(0, 0, diff);;
             this.stage.update();
         }
+    }
+    p.updateColor = function (updateStroke, updateStrokeColor, updateFillColor) {
+        var rect = this.drawingCanvas.graphics._instructions[1];
+        console.log(rect);
+        this.circle.clear()
+        if (updateStroke != 0) {
+            this.circle.setStrokeStyle(updateStroke).beginStroke(updateStrokeColor).beginFill(updateFillColor).drawCircle(0, 0, rect.radius);
+        } else {
+
+            this.circle.beginFill(updateFillColor).drawCircle(0, 0, rect.radius);
+        }
+        this.stage.update();
     }
     paint.Circle = Circle
 }());
