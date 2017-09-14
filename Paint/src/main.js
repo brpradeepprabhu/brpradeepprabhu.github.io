@@ -56,8 +56,9 @@ function updateProperties() {
     document.getElementById('updateY').value = selectedShape.y;
     document.getElementById('updateAlpha').value = selectedShape.alpha;
     if (selectedShape.graphics) {
+        $('#textProperties').hide();
         document.getElementById('updateStrokeColor').value = (selectedShape.graphics._stroke == null) ? '#000000' : selectedShape.graphics._stroke.style;
-        document.getElementById('updateFillColor').value = selectedShape.graphics._fill.style;
+        document.getElementById('updateFillColor').value = (selectedShape.graphics._fill == null) ? '#000000' : selectedShape.graphics._fill.style;
         document.getElementById('updateStroke').value = (selectedShape.graphics._stroke == null) ? 0 : selectedShape.graphics._strokeStyle.width;
     } else {
         document.getElementById('updateFillColor').value = selectedShape.color;
@@ -107,7 +108,7 @@ function deleteSelected() {
         stage.update();
         selectedShape = undefined;
         $('#deleteBtn').hide();
-
+        $('#textProperties').hide();
     }
 }
 
