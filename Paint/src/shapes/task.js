@@ -26,7 +26,8 @@ var paint = paint || {};
         this.drawingCanvas.addEventListener('pressmove', this.shapeMouseMove.bind(this));
         if (currentShapeBtn === 'select') {
             selectedShape = this.drawingCanvas;
-            $('#task').show();
+            $('#deleteBtn').show();
+            
         }
     }
     p.shapeMouseMove = function (e) {
@@ -45,9 +46,12 @@ var paint = paint || {};
 
     }
     p.mouseUp = function () {
-        document.getElementById('taskDesc').value = '';
-        document.getElementById('taskHeadValue').value = '';
-        $('#taskDialog').show();
+        if (currentShapeBtn !== 'select') {
+            document.getElementById('taskDesc').value = '';
+            document.getElementById('taskHeadValue').value = '';
+            $('#taskDialog').show();
+        }
+
     }
     p.mouseMove = function () {
 

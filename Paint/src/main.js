@@ -205,7 +205,7 @@ function updateStroke(e) {
 }
 
 function saveTask() {
-    updateTask();
+
     taskList.push({
         id: taskCounter,
         desc: document.getElementById('taskDesc').value,
@@ -214,8 +214,15 @@ function saveTask() {
     taskCounter++;
     $('#taskDialog').hide();
     console.log(taskList);
+    updateTask();
 }
 
 function updateTask() {
-
+    var taskContainer = document.getElementById('taskContainer');
+    taskContainer.innerHTML = '';
+    for (var i = 0; i < taskList.length; i++) {
+        var task = document.createElement('div');
+        task.innerHTML = taskList[i].header;
+        taskContainer.appendChild(task)
+    }
 }
