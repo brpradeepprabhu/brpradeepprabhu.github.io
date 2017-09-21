@@ -113,6 +113,14 @@ function deleteSelected() {
     (selectedShape)
     if (selectedShape) {
         contentContainer.removeChild(selectedShape);
+        if (selectedShape.taskCounter) {
+            for (var i = 0; i < taskList.length; i++) {
+                if (taskList[i].id === selectedShape.taskCounter) {
+                    taskList.splice(i, 1);
+                }
+            }
+            updateTask();
+        }
         stage.update();
         selectedShape = undefined;
         $('#deleteBtn').hide();
@@ -185,6 +193,17 @@ function stageMouseUp(event) {
 
 function undo() {
     if (contentContainer.getNumChildren() > 0) {
+        var child = contentContainer.getChildAt(contentContainer.getNumChildren() - 1);
+
+        if (child.taskCounter) {
+            console.log('tas', child.taskCounter)
+            for (var i = 0; i < taskList.length; i++) {
+                if (taskList[i].id === child.taskCounter) {
+                    taskList.splice(i, 1);
+                }
+            }
+            updateTask();
+        }
         contentContainer.removeChildAt(contentContainer.getNumChildren() - 1);
         stage.update();
     }
@@ -192,6 +211,8 @@ function undo() {
 
 function clearAll() {
     contentContainer.removeAllChildren();
+    taskList = [];
+    updateTask();
     stage.update();
 }
 

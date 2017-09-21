@@ -58,8 +58,10 @@ var paint = paint || {};
 
     }
     p.mouseUp = function () {
-        document.getElementById('mTextInputValue').value = '';
-        $('#lineDialog').modal('show');
+        if (currentShapeBtn !== 'select') {
+            document.getElementById('mTextInputValue').value = '';
+            $('#lineDialog').modal('show');
+        }
     }
     p.mouseMove = function () {
         if (currentShapeBtn != 'select') {
