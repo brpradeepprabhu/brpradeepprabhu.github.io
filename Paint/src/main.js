@@ -2,8 +2,10 @@ var canvas, stage, currentShapeBtn = "freestyle",
     currentShape, stroke = 10,
     stokeColor = '#ffff00',
     fillColor = '#000fff',
-    selectedShape,
+    taskCounter = 0,
+    selectedShape, taskList = [],
     contentContainer;
+
 
 function downloadImage() {
     if (canvas.msToBlob) { //for IE
@@ -32,7 +34,8 @@ function init() {
     canvas.height = window.innerHeight * 0.8;
     canvas.width = parseInt(parentStyle.width);
     $('#strokeColor').colorpicker({
-        color: stokeColor
+        color: stokeColor,
+        customClass: 'colorPickerCustom'
     }).on('changeColor', function (e) {
         stokeColor = e.value;
     });
@@ -43,6 +46,9 @@ function init() {
     });
     $('#deleteBtn').hide();
     $('#textProperties').hide();
+    $('#properties').hide();
+    $('#task').show();
+    $('[data-toggle="tooltip"]').tooltip();
 
 }
 
@@ -69,8 +75,10 @@ function updateProperties() {
         document.getElementById('updateFontSize').value = textFont[2].trim();
         console.log(textFont[2]);
         $('#textProperties').show();
-    }
 
+    }
+    $('#properties').show();
+    $('#task').hide();
 }
 
 function updateSelectedObj() {
@@ -137,13 +145,24 @@ function stageMouseDown(event) {
     } else if (currentShapeBtn === 'rect') {
         currentShape = new paint.Rect(stage, contentContainer);
 
+    } else if (currentShapeBtn === 'task') {
+        currentShape = new paint.Task(stage, contentContainer);
+
     }
     if (currentShapeBtn !== 'select') {
         selectedShape = undefined;
         $('#deleteBtn').hide();
         $('#textProperties').hide();
+        $('#properties').hide();
+        $('#task').show();
     }
 
+}
+
+function changeMeasurement() {
+    currentShape.measurementText.text = document.getElementById('mTextInputValue').value;
+    $('#lineDialog').modal('hide');
+    stage.update();
 }
 
 function stageMouseMove(event) {
@@ -154,7 +173,6 @@ function stageMouseMove(event) {
 
 function displayText() {
     this.currentShape.text.text = document.getElementById('textInputValue').value;
-    (document.getElementById('textInputValue').value);
     $('#textDialog').modal('hide');
     stage.update();
 }
@@ -184,4 +202,20 @@ function createShape(shape) {
 
 function updateStroke(e) {
     stroke = e.value;
+}
+
+function saveTask() {
+    updateTask();
+    taskList.push({
+        id: taskCounter,
+        desc: document.getElementById('taskDesc').value,
+        header: document.getElementById('taskHeadValue').value,
+    })
+    taskCounter++;
+    $('#taskDialog').hide();
+    console.log(taskList);
+}
+
+function updateTask() {
+
 }

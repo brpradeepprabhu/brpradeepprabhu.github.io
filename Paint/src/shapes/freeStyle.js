@@ -21,16 +21,18 @@ var paint = paint || {};
 
     }
     p.mouseMove = function () {
-        const midPt = new createjs.Point(this.oldPt.x + this.stage.mouseX >> 1, this.oldPt.y + this.stage.mouseY >> 1);
-        this.drawingCanvas.graphics.setStrokeStyle(stroke, 'round', 'round')
-            .beginStroke(stokeColor).moveTo(midPt.x, midPt.y).curveTo(this.oldPt.x, this.oldPt.y, this.oldMidPt.x, this.oldMidPt.y);
-        this.oldPt.x = this.stage.mouseX;
-        this.oldPt.y = this.stage.mouseY;
-        this.oldMidPt.x = midPt.x;
-        this.oldMidPt.y = midPt.y;
-        this.oldPtArray.push(this.oldPt);
-        this.oldMidPtArray.push(this.oldMidPt);
-        this.stage.update();
+        if (currentShapeBtn != 'select') {
+            const midPt = new createjs.Point(this.oldPt.x + this.stage.mouseX >> 1, this.oldPt.y + this.stage.mouseY >> 1);
+            this.drawingCanvas.graphics.setStrokeStyle(stroke, 'round', 'round')
+                .beginStroke(stokeColor).moveTo(midPt.x, midPt.y).curveTo(this.oldPt.x, this.oldPt.y, this.oldMidPt.x, this.oldMidPt.y);
+            this.oldPt.x = this.stage.mouseX;
+            this.oldPt.y = this.stage.mouseY;
+            this.oldMidPt.x = midPt.x;
+            this.oldMidPt.y = midPt.y;
+            this.oldPtArray.push(this.oldPt);
+            this.oldMidPtArray.push(this.oldMidPt);
+            this.stage.update();
+        }
     }
     paint.freeStyle = freeStyle;
 }());

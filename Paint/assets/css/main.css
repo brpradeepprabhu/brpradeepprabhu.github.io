@@ -2,9 +2,11 @@ body {
     background: #2d2b2b;
     margin: 10px 0px;
 }
-.noPadding{
+
+.noPadding {
     padding: 0;
 }
+
 canvas {
     background: white;
 }
@@ -20,18 +22,38 @@ canvas {
 .sidebar>div {
     margin: 5px 0
 }
-#properties{
-    padding:5px;
+
+#properties,
+#task {
+    padding: 5px;
     background: #4c4949;
     margin: 0 15px;
     border-radius: 5px;
 }
-#properties>div {
+
+#task {
+    margin-top: 10px;
+}
+
+#properties>div,
+#task>div {
     color: white;
 }
+
 #properties input {
     color: black;
 }
+
 #properties textarea {
     color: black;
+}
+
+.colorpicker-with-alpha {
+    position: absolute !important;
+    left: 0!important;
+}
+
+.colorpicker::after,
+.colorpicker::before {
+    border: none;
 }

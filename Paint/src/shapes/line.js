@@ -7,7 +7,7 @@ var paint = paint || {};
         container.addChild(this.lineContainer);
         this.drawingCanvas = new createjs.Shape();
         this.lineContainer.addChild(this.drawingCanvas);
-        this.measurementText = new createjs.Text('10px', '14px Arial');
+        this.measurementText = new createjs.Text('', '14px Arial');
         this.lineContainer.addChild(this.measurementText);
         this.drawingCanvas.instance = this;
         this.oldPt = new createjs.Point(this.stage.mouseX, this.stage.mouseY);
@@ -22,11 +22,11 @@ var paint = paint || {};
     }
     var p = Line.prototype;
     p.calculateWidth = function (startingPoint, endPoint) {
-        var xDist = startingPoint.x - endPoint.x
-        var yDist = startingPoint.y - endPoint.y
+        var xDist = endPoint.x - startingPoint.x;
+        var yDist = endPoint.y - startingPoint.y;
         var centerPointX = ((endPoint.x - startingPoint.x) / 2);
         var centerPointY = ((endPoint.y - startingPoint.y) / 2);
-        this.measurementText.text = Math.floor(Math.sqrt(xDist * xDist + yDist * yDist)) +" "+ this.measurementCalc;
+        // this.measurementText.text = Math.floor(Math.sqrt(xDist * xDist + yDist * yDist)) +" "+ this.measurementCalc;
         this.measurementText.x = startingPoint.x + centerPointX;
         this.measurementText.y = startingPoint.y + centerPointY;
         var angle = Math.atan2(yDist, xDist) * (180 / Math.PI);
@@ -58,7 +58,8 @@ var paint = paint || {};
 
     }
     p.mouseUp = function () {
-
+        document.getElementById('mTextInputValue').value = '';
+        $('#lineDialog').modal('show');
     }
     p.mouseMove = function () {
         if (currentShapeBtn != 'select') {
