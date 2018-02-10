@@ -17,6 +17,7 @@ var paint = paint || {};
         this.measurementCalc = "px";
         this.calculateWidth(this.oldPt, this.oldMidPt);
         this.stage.update();
+        this.drawingCanvas.type = 'line';
         this.lineContainer.addEventListener('mousedown', this.shapeMouseDown.bind(this));
         this.lineContainer.addEventListener('mouseup', this.shapeMouseUp);
     }
@@ -31,6 +32,7 @@ var paint = paint || {};
         this.measurementText.y = startingPoint.y + centerPointY;
         var angle = Math.atan2(yDist, xDist) * (180 / Math.PI);
         this.measurementText.rotation = angle;
+    
         this.stage.update();
     }
     p.shapeMouseDown = function (e) {

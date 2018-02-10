@@ -48,10 +48,10 @@ canvas {
     color: black;
 }
 
-.colorpicker-with-alpha {
+/* .colorpicker-with-alpha {
     position: absolute !important;
     left: 0!important;
-}
+} */
 
 .colorpicker::after,
 .colorpicker::before {

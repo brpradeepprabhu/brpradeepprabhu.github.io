@@ -10,6 +10,7 @@ var paint = paint || {};
         this.stage.update();
         this.text.addEventListener('mousedown', this.shapeMouseDown.bind(this));
         this.text.addEventListener('mouseup', this.shapeMouseUp);
+        this.text.type = 'task';
         $('#textDialog').modal('show');
         $('#textInputValue').val('');
         console.log(this.text)

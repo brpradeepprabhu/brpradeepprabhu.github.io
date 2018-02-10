@@ -35,12 +35,14 @@ function init() {
     canvas.width = parseInt(parentStyle.width);
     $('#strokeColor').colorpicker({
         color: stokeColor,
-        customClass: 'colorPickerCustom'
+        customClass: 'colorPickerCustom',
+        align: "left",
     }).on('changeColor', function (e) {
         stokeColor = e.value;
     });
     $('#fillColor').colorpicker({
-        color: fillColor
+        color: fillColor,
+        align: "left",
     }).on('changeColor', function (e) {
         fillColor = e.value;
     });
@@ -131,6 +133,7 @@ function deleteSelected() {
 function stageMouseDown(event) {
     $('#strokeColor').colorpicker('hide')
     $('#fillColor').colorpicker('hide')
+    clearTaskFilter();
     stage.addEventListener("stagemousemove", stageMouseMove);
     if (currentShapeBtn === 'freestyle') {
         currentShape = new paint.freeStyle(stage, contentContainer);
@@ -234,7 +237,6 @@ function saveTask() {
     })
     taskCounter++;
     $('#taskDialog').hide();
-    console.log(taskList);
     updateTask();
 }
 
@@ -244,6 +246,36 @@ function updateTask() {
     for (var i = 0; i < taskList.length; i++) {
         var task = document.createElement('div');
         task.innerHTML = taskList[i].header;
+        task.id = taskList[i].id;
+        task.style.cursor = 'pointer';
         taskContainer.appendChild(task)
+        task.addEventListener('click', function (e) {
+            applyTaskFilter(e);
+        })
     }
+}
+
+function clearTaskFilter() {
+    contentContainer.children.forEach(function (element) {
+        if (element.taskCounter !== undefined) {
+            element.instance.clearFilter();
+        }
+
+    }, this);
+}
+
+function applyTaskFilter(e) {
+    contentContainer.children.forEach(function (element) {
+        if (element.taskCounter !== undefined) {
+            console.log(e.currentTarget.id, element.taskCounter)
+            if (element.taskCounter == e.currentTarget.id) {
+                console.log(element.instance);
+                element.instance.applyFilter();
+                currentShapeBtn = 'select'
+            } else {
+                element.instance.clearFilter();
+            }
+        }
+
+    }, this);
 }

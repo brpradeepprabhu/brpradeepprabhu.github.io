@@ -12,6 +12,7 @@ var paint = paint || {};
             this.drawingCanvas.y = stage.mouseY;
             this.drawingCanvas.instance = this;
             this.drawingCanvas.taskCounter = taskCounter;
+            this.drawingCanvas.type = 'task';
             this.stage.update();
             this.drawingCanvas.addEventListener('mousedown', this.shapeMouseDown.bind(this));
             this.drawingCanvas.addEventListener('mouseup', this.shapeMouseUp);
@@ -19,6 +20,18 @@ var paint = paint || {};
 
     }
     var p = Task.prototype;
+    p.applyFilter = function () {
+        var filter = new createjs.ColorFilter(0, 0, 0, 1, 0, 0, 255, 0);
+        this.drawingCanvas.filters = [filter];
+        this.drawingCanvas.cache(0, 0, this.drawingCanvas.getBounds().width, this.drawingCanvas.getBounds().height);
+        console.log(filter);
+        this.stage.update();
+    }
+    p.clearFilter = function () {
+        this.drawingCanvas.filters = [];
+        this.drawingCanvas.cache(0, 0, this.drawingCanvas.getBounds().width, this.drawingCanvas.getBounds().height);
+        this.stage.update();
+    }
     p.shapeMouseDown = function (e) {
         this.offset = {
             x: this.drawingCanvas.x - e.stageX,
@@ -41,7 +54,7 @@ var paint = paint || {};
         }
     }
     p.shapeMouseUp = function (e) {
-
+        $('#task').show();
     }
     p.mouseDown = function () {
 

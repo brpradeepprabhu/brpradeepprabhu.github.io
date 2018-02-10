@@ -15,6 +15,7 @@ var paint = paint || {};
         container.addChild(this.drawingCanvas);
         this.drawingCanvas.x = stage.mouseX;
         this.drawingCanvas.y = stage.mouseY;
+        this.drawingCanvas.type = 'square';
         this.drawingCanvas.addEventListener('mousedown', this.shapeMouseDown.bind(this));
         this.drawingCanvas.addEventListener('mouseup', this.shapeMouseUp);
         this.stage.update();

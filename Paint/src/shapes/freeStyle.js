@@ -11,6 +11,7 @@ var paint = paint || {};
         this.oldMidPt = this.oldPt.clone();
         this.oldPtArray.push(this.oldPt);
         this.oldMidPtArray.push(this.oldMidPt);
+        this.drawingCanvas.type = 'freestyle';
         this.stage.update();
     }
     var p = freeStyle.prototype;

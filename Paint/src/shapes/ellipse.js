@@ -13,6 +13,7 @@ var paint = paint || {};
         container.addChild(this.drawingCanvas);
         this.drawingCanvas.x = stage.mouseX;
         this.drawingCanvas.y = stage.mouseY;
+        this.drawingCanvas.type = 'ellipsis';
         this.drawingCanvas.instance = this;
         this.stage.update();
         this.drawingCanvas.addEventListener('mousedown', this.shapeMouseDown.bind(this));

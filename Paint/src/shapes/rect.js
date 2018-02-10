@@ -11,6 +11,7 @@ var paint = paint || {};
         this.drawingCanvas.x = stage.mouseX;
         this.drawingCanvas.y = stage.mouseY;
         this.drawingCanvas.instance = this;
+        this.drawingCanvas.type = 'rect';
         this.stage.update();
         this.drawingCanvas.addEventListener('mousedown', this.shapeMouseDown.bind(this));
         this.drawingCanvas.addEventListener('mouseup', this.shapeMouseUp);
