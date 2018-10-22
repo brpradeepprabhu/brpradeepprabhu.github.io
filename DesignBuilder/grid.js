@@ -1,19 +1,31 @@
+var designBuilder = 0;
 $(document).ready(() => {
     $('#AddGridClick').click(() => {
         try {
             const val = $('#gridValue').val()
-            const array = val.split(' ');
-            const total = array.reduce((a, b) => {
-                return parseInt(a) + parseInt(b)
-            })
+            if (val) {
+                const array = val.split(' ');
+                const total = array.reduce((a, b) => {
+                    return parseInt(a) + parseInt(b)
+                })
+                console.log(array)
+                if (total < 13) {
+                    let grid = "<div class='row'>"
+                    let cgrid = "<div class='row'>"
+                    for (let i = 0; i < array.length; i++) {
+                        designBuilder += 1;
+                        grid += "<div data-dbid='designBuilder" + designBuilder + "' onclick='selectedParent(event,this)' class='col-" + parseInt(array[i]) + "'></div>"
+                        cgrid += "<div data-cbid='designBuilder" + designBuilder + "'  class='col-" + parseInt(array[i]) + "'></div>"
+                    }
+                    grid += '</div>';
 
-            if (total < 13) {
-                let grid = "<div class='row'>"
-                for (let i = 0; i < array.length; i++) {
-                    grid += "<div onclick='selectedParent(event,this)' class='col-" + parseInt(array[i]) + "' style='min-height:90px;border:1px solid black'></div>"
+                    cgrid += '</div>';
+                    parentContainer.append(grid);
+                    console.log("ccc", customContainer)
+                    customContainer.append(cgrid)
+                } else {
+                    alert("Count of the grid should less than or equal to 12")
                 }
-                grid += '<div>';
-                parentContainer.append(grid)
             } else {
                 alert("Count of the grid should less than or equal to 12")
             }
@@ -23,8 +35,11 @@ $(document).ready(() => {
 
     })
 })
-function selectedParent(event,element) {
+
+function selectedParent(event, element) {
     parentContainer = $(element);
-   event.stopPropagation();
-   console.log($(element))
+    const dataParentContainer = "[data-cbid =" + $(parentContainer).attr('data-dbid') + "]"
+    customContainer = $(dataParentContainer);
+    event.stopPropagation();
+    console.log($(element))
 }
