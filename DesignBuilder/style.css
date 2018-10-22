@@ -1,0 +1,61 @@
+#download {
+    right: 0;
+    position: absolute;
+    margin: 0% 10px;
+}
+
+#parentContainer {
+    padding: 20px;
+    border: 1px solid #9a969666;
+    box-shadow: 1px 1px 1px 1px #80777721;
+}
+
+.container-fluid {
+    padding: 0;
+    overflow: hidden;
+}
+
+#parentContainer .row>div {
+    min-height: 90px;
+    border: 1px solid #9a969666;
+    box-shadow: 1px 1px 1px 1px #80777721;
+
+}
+
+#menu {
+    border: 1px solid #8077776b;
+    box-shadow: 1px 1px 1px 1px #8077776b;
+    min-height: calc(100vh - 80px);
+    box-shadow: 6px 0px 12px 0px #8077776b;
+}
+
+#menu .card-header {
+    background: #1ab394;
+    padding: 0%;
+    box-shadow: -1px 11px 13px 0px inset #155f1a38;
+
+}
+
+#menu .card-header button {
+    color: white;
+}
+
+#menu .card-body {
+    padding: 0;
+}
+
+#menu .card-body div {
+    padding: 6px 10px;
+}
+
+#menu .card-body div {
+    padding: 6px 10px;
+cursor:pointer;
+
+}
+
+#menu .card-body div:hover {
+    background: #2f4050;
+    color:white;
+
+}
