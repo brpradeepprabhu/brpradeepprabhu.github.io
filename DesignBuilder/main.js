@@ -23,8 +23,8 @@ function DownloadHTML() {
 window.onload = function () {
     let menu = '<div class="accordion" id="accordionExample">';
     parentContainer = $('[data-dbid="designBuilder0"]')
-    customContainer  = $('[data-cbid="designBuilder0"]')
-    $('[data-cbid="designBuilder0"]').hide();
+    customContainer = $('[data-cbid="designBuilder0"]')
+    // $('[data-cbid="designBuilder0"]').hide();
     console.log("asdasd", parentContainer)
     $.get('./assets/custom.json', (data) => {
         customJSON = data;
@@ -60,14 +60,71 @@ window.onload = function () {
         }
         $('#menu').append(menu);
     })
-
+    createRightClickEvent();
 }
 
 function genearateElement(ele) {
     const data = $(ele).attr("data-id");
     const jsonData = data.split("**");
-    const dataParentContainer = "[data-cbid =" + $(parentContainer).attr('data-dbid') + "]"
+    const dbid = $(parentContainer).attr('data-dbid');
+    const dataParentContainer = "[data-cbid =" + dbid + "]"
+    console.log("[data-dbid =" + dbid + "] *:last-child", )
     customContainer = $(dataParentContainer);
     parentContainer.append(designJSON[jsonData[0]][jsonData[1]])
     customContainer.append(customJSON[jsonData[0]][jsonData[1]])
+    designBuilder += 1;
+    $("[data-dbid =" + dbid + "]>*:last-child").addClass("rightClickContainer").attr("data-dbid", 'designBuilder' + designBuilder)
+    $("[data-cbid =" + dbid + "]>*:last-child").attr("data-cbid", 'designBuilder' + designBuilder)
+}
+
+function createRightClickEvent() {
+
+    $('#parentContainer').contextmenu({
+        delegate: ".rightClickContainer",
+        preventContextMenuForPopup: true,
+        menu: [{
+                title: "Delete",
+                cmd: "del",
+                uiIcon: "ui-icon-trash"
+            },
+
+
+        ],
+        // Handle menu selection to implement a fake-clipboard
+        select: function (event, ui) {
+            var $target = ui.target;
+            console.log(ui)
+            switch (ui.cmd) {
+                case "copy":
+                    CLIPBOARD = $target.text();
+                    break;
+                case "paste":
+                    CLIPBOARD = "";
+                    break;
+                case "del":                    
+                    loopParent($target);
+                    break;
+            }
+            // Optionally return false, to prevent closing the menu now
+        },
+
+
+    });
+
+
+}
+
+function loopParent(target) {
+    const dbid = target.attr('data-dbid');
+    if (dbid) {
+        var db = document.querySelector("[data-dbid =" + dbid + "]");
+        var cb = document.querySelector("[data-cbid =" + dbid + "]");
+        console.log(db)
+        db.remove();
+        cb.remove();
+    } else {
+        console.log(target.parent())
+        loopParent(target.parent())
+        target.empty();
+    }
 }

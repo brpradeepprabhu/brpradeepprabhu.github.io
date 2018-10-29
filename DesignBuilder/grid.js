@@ -14,7 +14,7 @@ $(document).ready(() => {
                     let cgrid = "<div class='row'>"
                     for (let i = 0; i < array.length; i++) {
                         designBuilder += 1;
-                        grid += "<div data-dbid='designBuilder" + designBuilder + "' onclick='selectedParent(event,this)' class='col-" + parseInt(array[i]) + "'></div>"
+                        grid += "<div data-dbid='designBuilder" + designBuilder + "' onclick='selectedParent(event,this)' class='col-" + parseInt(array[i]) + " rightClickContainer'></div>"
                         cgrid += "<div data-cbid='designBuilder" + designBuilder + "'  class='col-" + parseInt(array[i]) + "'></div>"
                     }
                     grid += '</div>';
