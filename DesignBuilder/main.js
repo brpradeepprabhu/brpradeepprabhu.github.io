@@ -23,6 +23,7 @@ function DownloadHTML() {
 window.onload = function () {
     let menu = '<div class="accordion" id="accordionExample">';
     parentContainer = $('[data-dbid="designBuilder0"]')
+    parentContainer.addClass('selectedRow')
     customContainer = $('[data-cbid="designBuilder0"]')
     // $('[data-cbid="designBuilder0"]').hide();
     console.log("asdasd", parentContainer)

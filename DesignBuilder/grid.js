@@ -37,7 +37,9 @@ $(document).ready(() => {
 })
 
 function selectedParent(event, element) {
+    parentContainer.removeClass('selectedRow')
     parentContainer = $(element);
+    parentContainer.addClass('selectedRow')
     const dataParentContainer = "[data-cbid =" + $(parentContainer).attr('data-dbid') + "]"
     customContainer = $(dataParentContainer);
     event.stopPropagation();

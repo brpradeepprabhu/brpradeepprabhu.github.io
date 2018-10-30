@@ -59,3 +59,7 @@ cursor:pointer;
     color:white;
 
 }
+
+.selectedRow {
+    border:1px solid darkorange !important;
+}
