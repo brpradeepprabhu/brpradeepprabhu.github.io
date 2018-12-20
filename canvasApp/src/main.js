@@ -4,23 +4,29 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 import login from './components/login.vue'
 import register from './components/register.vue'
-Vue.use(VueRouter)
-Vue.config.productionTip = false
+import customize from './components/customize'
+
+Vue.use(VueRouter);
+Vue.config.productionTip = false;
 const routes = [{
     path: '/login',
     component: login
-  },
-  {
-    path: '/register',
-    component: register
-  }
-]
+},
+    {
+        path: '/register',
+        component: register
+    },
+    {
+        path: '/customize',
+        component: customize
+    }
+];
 
 
 const router = new VueRouter({
-  routes 
-})
+    routes
+});
 new Vue({
   render: h => h(App),
-  router
+    router
 }).$mount('#app')

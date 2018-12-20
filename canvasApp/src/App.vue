@@ -27,18 +27,18 @@
 
 <script>
 export default {
-  name: "App",
-  components: {},
-  data() {
-    return {
-      items: ["light", "dark"],
-      dark: false
-    };
-  },
-  methods: {
-    updateThemes: function($event) {
-      this.dark = $event === "dark";
+    name: "App",
+    components: {},
+    data() {
+        return {
+            items: ["light", "dark"],
+            dark: false
+        };
+    },
+    methods: {
+        updateThemes: function ($event) {
+            this.dark = $event === "dark";
+        }
     }
-  }
 };
 </script>
